@@ -18,7 +18,7 @@ var signIn = async(req, res, next) => {
             throw new Error('No email or password given.');
         
         var account = await models.Account.findOne({ where: { email: credentials.email }, raw: true});
-            
+        
         if(!account)
             throw new Error('Account not found in database.');
             
