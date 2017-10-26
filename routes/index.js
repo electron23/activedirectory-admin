@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
+var logger = require('../utils/logger');
 var checkAuth = require('../controllers/auth.controller').checkAuth;
 var auth = require('./auth');
-var logger = require('../utils/logger');
+var account = require('./account');
+var profile = require('./profile');
+var config = require('./config');
 
 router.use('/auth', auth);
 
@@ -16,6 +19,8 @@ router.get('/', (req, res, next) => {
   res.status(200).json({code: 200, message: 'Active Directory Admin API is listening.', data: {}});
 });
 
-
+router.use('/account', account);
+router.use('/profile', profile);
+router.use('/config', config);
 
 module.exports = router;
